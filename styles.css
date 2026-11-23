@@ -1,0 +1,688 @@
+:root {
+	--gradient-start-height-percent: 100%;
+	--gradient-expanded-height-percent: 800%;
+	--gradient-width-percent: 240%;
+	--text-below-gradient: 300px;
+	--gradient-start-scale: 1;
+	--gradient-expand-amount: 5.5;
+	--gradient-cover-scroll: 800px;
+	--gradient-expand-speed: 1.0;
+	--gradient-scale: 1;
+}
+
+html,
+body {
+	min-height: 100%;
+}
+
+body {
+	margin: 0;
+	min-height: 200vh;
+	background-color: #F5EDF0;
+	cursor: none;
+}
+
+body::before {
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	background: linear-gradient(90deg, rgb(136, 111, 104), rgb(85, 55, 57), rgb(61, 44, 46), rgb(44, 38, 39));
+	content: "";
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.5s ease;
+}
+
+body.is-gradient-expanded::before {
+	opacity: 1;
+}
+
+.decoration-gradient,
+.decoration-gradient * {
+  top: 150px;
+  bottom: 25%;
+  box-sizing: border-box;
+}
+.decoration-gradient {
+  background: linear-gradient(
+    90deg,
+	rgb(136, 111, 104) 3.3653847873210907%,
+	rgb(85, 55, 57) 36.057692766189575%,
+	rgb(61, 44, 46) 68.2692289352417%,
+	rgb(44, 38, 39) 95.19230723381042%
+  );
+  height: 396px;
+  opacity: 0.9;
+  position: relative;
+	transform: scale(var(--gradient-scale));
+	transform-origin: center center;
+  filter: blur(72.25px);
+	transition: transform 0.12s linear, opacity 0.5s ease, filter 0.5s ease;
+	will-change: transform;
+}
+
+.decoration-gradient.is-expanding {
+	opacity: 1;
+	filter: blur(0);
+}
+
+.hero-copy {
+	margin-top: var(--text-below-gradient);
+	padding-left: 2%;
+	transition: opacity 0.5s ease;
+}
+
+.hero-copy.is-fading {
+	opacity: 0;
+}
+
+.navbar {
+	position: fixed;
+	top: 1rem;
+	left: 50%;
+	z-index: 2;
+	transform: translateX(-50%);
+	padding: 1rem 1.6rem;
+	
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 32px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(8px);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar.is-gradient-expanded {
+	background: rgba(44, 38, 39, 0.45);
+	border-color: rgba(255, 255, 255, 0.4);
+}
+
+.navbar.is-gradient-expanded .link {
+	color: #fff;
+}
+
+.link {
+	text-decoration: none;
+	color: #2c2627;
+	font-family: "BBH Hegarty";
+	font-size: 1.5rem;
+	margin: 0 1rem;
+	transition: color 0.3s ease-in-out;
+}
+
+h1#name {
+	margin: 0;
+	color: #2c2627;
+	position: relative;
+	z-index: 0;
+	line-height: 0.85;
+	font-size: 13rem;
+	font-family: "BBH Bartle";
+}
+
+h2#bio {
+	margin: 0.5rem 0 0;
+	color: #4f3436;
+	font-size: 5rem;
+	font-family: "BBH Bogle";
+	letter-spacing: 0.2rem;
+}
+
+.cursor {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(206, 201, 201, 0.75);
+    box-shadow: 0 0 18px rgba(190, 185, 185, 0.18);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    filter: blur(4px);
+    transition: transform 180ms ease, width 180ms ease, height 180ms ease, background 180ms ease, filter 180ms ease;
+    will-change: transform, left, top;
+}
+
+.cursorGrow {
+    width: 48px;
+    height: 48px;
+    transform: translate(-50%, -50%) scale(1.9);
+    background: rgba(231, 226, 226, 0.6);
+    box-shadow: 0 0 26px rgba(214, 213, 213, 0.28);
+    filter: blur(6px);
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+.expanded-section {
+	position: fixed;
+	inset: 0;
+	z-index: 1;
+	min-height: 100vh;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	padding: 8rem 4vw 4rem;
+	box-sizing: border-box;
+	color: #fff;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+}
+
+.expanded-section.is-visible {
+	opacity: 1;
+	visibility: visible;
+	transition-delay: 0s;
+}
+
+.projects {
+	max-width: 2000px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.interests {
+	width: 100%;
+	max-width: 2000px;
+	margin: 0 auto;
+}
+
+.heading {
+	margin: 0 0 2rem;
+}
+
+.heading h2 {
+	margin: 0;
+	color: #fff;
+	font-family: "BBH Bartle";
+	font-size: 3rem;
+}
+
+.projects-heading > p:last-child {
+	max-width: 38rem;
+	margin: 0.13rem 0 0;
+	color: rgba(255, 255, 255, 0.78);
+	font-size: 1.00rem;
+	line-height: 1.6;
+	font-family: "BBH Hegarty";
+}
+
+.project-grid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	grid-auto-rows: minmax(150px, auto);
+	grid-auto-flow: dense;
+	gap: 16px;
+}
+
+.project-card {
+	--card-accent: #ffffff80;
+
+	position: relative;
+	display: flex;
+	min-width: 0;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 1.5rem;
+	overflow: hidden;
+	padding: 1.25rem;
+	background: rgba(79, 52, 54, 0.53);
+	border: 1px solid rgba(79, 52, 54, 0.36);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(11.4px);
+	-webkit-backdrop-filter: blur(11.4px);
+	transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
+}
+
+.project-card::after {
+	position: absolute;
+	right: -1px;
+	bottom: 0;
+	left: -1px;
+	height: 2px;
+	background: var(--card-accent);
+	content: "";
+	opacity: 0.8;
+}
+
+.project-card:hover {
+	transform: translateY(-3px);
+	border-color: #ffffff80;
+	background-color: rgba(79, 52, 54, 0.7);
+}
+
+.project-card--feature {
+	grid-column: span 2;
+	grid-row: span 2;
+	padding: 1.6rem;
+}
+
+.project-card--wide {
+	grid-column: span 2;
+}
+
+.project-card--tall {
+	grid-row: span 2;
+}
+
+.project-card-top {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	color: rgba(255, 255, 255, 0.68);
+	font-family: "BBH Hegarty";
+	font-size: 0.72rem;
+	letter-spacing: 0.06em;
+}
+
+.project-card-links {
+	display: flex;
+	gap: 0.4rem;
+}
+
+.project-icon-link {
+	display: grid;
+	width: 38px;
+	height: 38px;
+	place-items: center;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	border-radius: 6px;
+	color: #fff;
+	transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.project-icon-link:hover,
+.project-icon-link:focus-visible {
+	border-color: var(--card-accent);
+	background: rgba(255, 255, 255, 0.12);
+	color: var(--card-accent);
+}
+
+.project-icon-link svg {
+	width: 18px;
+	height: 18px;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.7;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.project-icon-link[href*="/RishitJain-dev/"] {
+	cursor: pointer;
+}
+
+.project-card-copy {
+	position: relative;
+	z-index: 1;
+}
+
+.project-category {
+	margin: 0 0 0.55rem;
+	color: var(--card-accent);
+	font-size: 0.85rem;
+}
+
+.project-card h3 {
+	margin: 0;
+	color: #fff;
+	font-family: "BBH Hegarty";
+	font-size: 1.55rem;
+	font-weight: 400;
+}
+
+.project-card p:not(.project-category) {
+	max-width: 34rem;
+	margin: 0.6rem 0 0;
+	color: rgba(255, 255, 255, 0.82);
+	font-size: 0.95rem;
+	line-height: 1.55;
+}
+
+.project-tag {
+	display: inline-block;
+	margin: 0.85rem 0.4rem 0 0;
+	padding: 0.3rem 0.55rem;
+	border: 1px solid rgba(255, 255, 255, 0.23);
+	border-radius: 4px;
+	color: rgba(255, 255, 255, 0.78);
+	font-size: 0.75rem;
+}
+
+.project-card-number {
+	position: absolute;
+	right: 1.1rem;
+	bottom: -1.4rem;
+	color: rgba(255, 255, 255, 0.055);
+	font-family: "BBH Bartle";
+	font-size: 8rem;
+	line-height: 1;
+	pointer-events: none;
+}
+
+.icon-library {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+.interests {
+	margin-top: 5rem;
+}
+
+.interest-carousel {
+	display: grid;
+	grid-template-columns: 44px minmax(0, 1fr) 44px;
+	align-items: center;
+	gap: 1rem;
+}
+
+.interest-viewport {
+	min-width: 0;
+	overflow: hidden;
+	border-radius: 16px;
+	touch-action: pan-y;
+}
+
+.interest-track {
+	display: flex;
+	transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+	will-change: transform;
+}
+
+.interest-slide {
+	flex: 0 0 100%;
+	min-height: 270px;
+	box-sizing: border-box;
+	justify-content: center;
+	padding: clamp(1.5rem, 5vw, 4rem);
+}
+
+.interest-slide .project-card-copy {
+	max-width: 48rem;
+}
+
+.interest-slide h3 {
+	font-size: clamp(1.8rem, 4vw, 3.2rem);
+}
+
+.interest-slide .project-card-copy > p:last-child {
+	font-size: clamp(1rem, 1.5vw, 1.2rem);
+}
+
+.interest-control {
+	display: grid;
+	width: 44px;
+	height: 44px;
+	place-items: center;
+	border: 1px solid rgba(255, 255, 255, 0.28);
+	border-radius: 50%;
+	background: rgba(79, 52, 54, 0.53);
+	color: #fff;
+	cursor: pointer;
+	backdrop-filter: blur(11.4px);
+	-webkit-backdrop-filter: blur(11.4px);
+	transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.interest-control:hover,
+.interest-control:focus-visible {
+	border-color: rgba(255, 255, 255, 0.7);
+	background: rgba(79, 52, 54, 0.85);
+}
+
+.interest-control svg {
+	width: 22px;
+	height: 22px;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.8;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.interest-pagination {
+	display: flex;
+	justify-content: center;
+	gap: 0.35rem;
+	margin-top: 1rem;
+}
+
+.interest-dot {
+	display: grid;
+	width: 32px;
+	height: 32px;
+	place-items: center;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+}
+
+.interest-dot::before {
+	width: 8px;
+	height: 8px;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.45);
+	content: "";
+	transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+.interest-dot.is-active::before {
+	width: 22px;
+	background: #fff;
+}
+
+.interest-carousel button:focus-visible,
+.interest-viewport:focus-visible {
+	outline: 2px solid #fff;
+	outline-offset: 3px;
+}
+
+@media (max-width: 1680px) {
+	h1#name {
+		font-size: 11rem;
+	}
+
+	h2#bio {
+		font-size: 4.75rem;
+	}
+
+	.link {
+		margin: 0 0.9rem;
+		font-size: 1.4rem;
+	}
+}
+
+@media (max-width: 1440px) {
+	h1#name {
+		font-size: 10rem;
+	}
+
+	h2#bio {
+		font-size: 4.25rem;
+	}
+
+	.link {
+		margin: 0 0.75rem;
+		font-size: 1.3rem;
+	}
+}
+
+@media (max-width: 1280px) {
+	h1#name {
+		font-size: 9rem;
+	}
+
+	h2#bio {
+		font-size: 3.75rem;
+	}
+
+	.link {
+		margin: 0 0.65rem;
+		font-size: 1.2rem;
+	}
+}
+
+@media (max-width: 1100px) {
+	h1#name {
+		font-size: 7.25rem;
+	}
+
+	h2#bio {
+		font-size: 3.25rem;
+	}
+
+	.link {
+		margin: 0 0.5rem;
+		font-size: 1.05rem;
+	}
+}
+
+@media (max-width: 900px) {
+	h1#name {
+		font-size: 5.75rem;
+	}
+
+	h2#bio {
+		font-size: 2.8rem;
+	}
+
+	.link {
+		margin: 0 0.4rem;
+		font-size: 0.9rem;
+	}
+}
+
+@media (max-width: 720px) {
+	.navbar {
+		padding: 0.8rem 1rem;
+		white-space: nowrap;
+	}
+
+	.link {
+		margin: 0 0.45rem;
+		font-size: 1rem;
+	}
+
+	.hero-copy {
+		padding-right: 1rem;
+		padding-left: 1rem;
+	}
+
+	h1#name {
+		font-size: 5.5rem;
+	}
+
+	h2#bio {
+		font-size: 2.6rem;
+		letter-spacing: 0.08rem;
+	}
+
+	.expanded-section {
+		padding: 7rem 1rem 2rem;
+	}
+
+	.project-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-auto-rows: minmax(160px, auto);
+	}
+
+	.project-card--feature {
+		grid-row: span 1;
+	}
+
+	.interest-carousel {
+		grid-template-columns: 40px minmax(0, 1fr) 40px;
+		gap: 0.6rem;
+	}
+
+	.interest-control {
+		width: 40px;
+		height: 40px;
+	}
+
+	.interest-slide {
+		min-height: 230px;
+	}
+}
+
+
+@media (max-width: 480px) {
+	.interest-carousel {
+		grid-template-columns: 1fr 1fr;
+		gap: 0.6rem 1rem;
+	}
+
+	.interest-viewport {
+		grid-column: 1 / -1;
+		grid-row: 1;
+	}
+
+	.interest-carousel [data-interest-previous] {
+		justify-self: end;
+	}
+
+	.interest-carousel [data-interest-next] {
+		justify-self: start;
+	}
+
+	.navbar {
+		max-width: calc(100vw - 1rem);
+		padding: 0.65rem 0.55rem;
+	}
+
+	.link {
+		margin: 0 0.3rem;
+		font-size: 0.82rem;
+	}
+
+	h1#name {
+		font-size: 2.8rem;
+	}
+
+	h2#bio {
+		font-size: 1.65rem;
+		letter-spacing: 0.04rem;
+	}
+
+	.project-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.project-card--feature,
+	.project-card--wide,
+	.project-card--tall {
+		grid-column: auto;
+		grid-row: auto;
+		min-height: 190px;
+	}
+
+	.projects-heading h2 {
+		font-size: 2.4rem;
+	}
+}
+
+@media (max-width: 360px) {
+	h1#name {
+		font-size: 2.2rem;
+	}
+
+	h2#bio {
+		font-size: 1.35rem;
+	}
+
+	.link {
+		margin: 0 0.22rem;
+		font-size: 0.75rem;
+	}
+}
