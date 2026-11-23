@@ -12,12 +12,14 @@
 
 html,
 body {
+	height: 100%;
 	min-height: 100%;
+	overflow: hidden;
 }
 
 body {
 	margin: 0;
-	min-height: 200vh;
+	min-height: 100vh;
 	background-color: #F5EDF0;
 	cursor: none;
 }
@@ -199,6 +201,39 @@ html {
 	grid-area: copy;
 	flex-direction: column;
 	gap: 0.5rem;
+}
+
+.project-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.github-link {
+	display: grid;
+	width: 2.25rem;
+	height: 2.25rem;
+	flex: 0 0 2.25rem;
+	place-items: center;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.1);
+	transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.github-link:hover,
+.github-link:focus-visible {
+	border-color: rgba(255, 255, 255, 0.7);
+	background: rgba(255, 255, 255, 0.2);
+}
+
+.github-icon {
+	display: block;
+	width: 1.25rem;
+	height: 1.25rem;
+	object-fit: contain;
+	filter: brightness(0) invert(1);
 }
 
 .project-name {
