@@ -193,25 +193,57 @@ html {
 	font-size: 3rem;
 }
 
+.project-copy {
+	display: flex;
+	min-width: 0;
+	grid-area: copy;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
 .project-name {
+	margin: 0;
 	font-family: "BBH Hegarty";
 	font-weight: 1;
+	font-size:xx-large;
+}
+
+.project-description {
+	margin: 0;
+	line-height: 1.5;
+}
+
+.project-image {
+	grid-area: image;
+	align-self: center;
+	justify-self: end;
+	width: 100%;
+	max-width: 220px;
+	height: 200px;
+	object-fit: contain;
+	object-position: right center;
+	border-radius: 16px;
 }
 
 .project {
-	--card-accent: #ffffff80;
+	--card-accent: #47474780;
 
 	position: relative;
-	display: flex;
+	display: grid;
 	min-width: 0;
-	flex-direction: column;
-	justify-content: space-between;
-	gap: 1.5rem;
+	grid-template-areas: "copy image";
+	grid-template-columns: minmax(0, 1fr) minmax(140px, 25%);
+	align-items: center;
+	column-gap: 2rem;
 	overflow: hidden;
 	padding: 1.25rem;
 	background: rgba(27, 6, 7, 0.53);
 	border: 1px solid rgba(79, 52, 54, 0.36);
 	border-radius: 16px;
+}
+
+.project-description {
+	font-family:Arial, Helvetica, sans-serif;
 }
 
 @media (max-width: 1680px) {
@@ -318,8 +350,16 @@ html {
 	}
 }
 
-
 @media (max-width: 480px) {
+	.project {
+		grid-template-columns: minmax(0, 1fr) minmax(96px, 35%);
+		column-gap: 1rem;
+	}
+
+	.project-image {
+		height: 150px;
+	}
+
 	.interest-carousel {
 		grid-template-columns: 1fr 1fr;
 		gap: 0.6rem 1rem;
