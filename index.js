@@ -113,6 +113,11 @@ function advanceGradientExpansion(delta) {
   body.classList.toggle("is-gradient-expanded", expansionProgress >= 1);
   expandedSection?.classList.toggle("is-visible", expansionProgress >= 1);
   expandedSection?.setAttribute("aria-hidden", String(expansionProgress < 1));
+  const hasExpandedContent = expansionProgress > 0;
+  navbar?.classList.toggle("is-gradient-expanded", hasExpandedContent);
+  body.classList.toggle("is-gradient-expanded", hasExpandedContent);
+  expandedSection?.classList.toggle("is-visible", hasExpandedContent);
+  expandedSection?.setAttribute("aria-hidden", String(!hasExpandedContent));
   updateGradientScale();
   return expansionProgress > 0 && expansionProgress < 1;
 }
