@@ -8,6 +8,8 @@
 	--gradient-cover-scroll: 800px;
 	--gradient-expand-speed: 1.0;
 	--gradient-scale: 1;
+	--projects-background: #3f2d2d;
+	--project-card-background: #2c1e1e;
 }
 
 html,
@@ -28,7 +30,7 @@ body::before {
 	position: fixed;
 	inset: 0;
 	z-index: 0;
-	background: linear-gradient(90deg, rgb(136, 111, 104), rgb(85, 55, 57), rgb(61, 44, 46), rgb(44, 38, 39));
+	background: var(--projects-background);
 	content: "";
 	opacity: 0;
 	pointer-events: none;
@@ -183,6 +185,48 @@ html {
 	transition-delay: 0s;
 }
 
+.photo-card {
+	display: block;
+	min-width: 0;
+	align-self: start;
+	overflow: hidden;
+	padding: 1.25rem;
+	box-sizing: border-box;
+	background: var(--project-card-background);
+	border: 1px solid rgba(79, 52, 54, 0.36);
+	border-radius: 16px;
+}
+
+.photo {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 1rem;
+}
+
+.photo-card--wide {
+	grid-column: span 2;
+}
+
+.photo-gallery-document,
+.photo-gallery-document body {
+	height: auto;
+	min-height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.photo-gallery {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	align-content: start;
+	gap: 1.25rem;
+	min-height: 100vh;
+	padding: clamp(1rem, 4vw, 4rem);
+	box-sizing: border-box;
+	background: #2c2627;
+	cursor: auto;
+}
 
 .heading {
 	margin: 0 0 2rem;
@@ -272,7 +316,7 @@ html {
 	column-gap: 2rem;
 	overflow: hidden;
 	padding: 1.25rem;
-	background: rgba(27, 6, 7, 0.53);
+	background: var(--project-card-background);
 	border: 1px solid rgba(79, 52, 54, 0.36);
 	border-radius: 16px;
 	margin: 20px;
@@ -362,6 +406,10 @@ html {
 		padding: 7rem 1rem 2rem;
 	}
 
+	.photo-gallery {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
 	.project-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		grid-auto-rows: minmax(160px, auto);
@@ -433,6 +481,14 @@ html {
 		grid-template-columns: 1fr;
 	}
 
+	.photo-gallery {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.photo-card--wide {
+		grid-column: auto;
+	}
+
 	.project-card--feature,
 	.project-card--wide,
 	.project-card--tall {
@@ -463,6 +519,10 @@ html {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		align-content: start;
 		gap: 1.25rem;
+	}
+
+	.photo-gallery {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 
 	.project {
