@@ -456,3 +456,57 @@ html {
 		font-size: 0.75rem;
 	}
 }
+
+@media (min-width: 900px) {
+	.expanded-section {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		align-content: start;
+		gap: 1.25rem;
+	}
+
+	.project {
+		grid-template-areas:
+			"image"
+			"copy";
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-rows: minmax(0, 1fr) auto;
+		align-items: stretch;
+		gap: 1rem;
+		height: clamp(360px, 44vh, 480px);
+		box-sizing: border-box;
+		margin: 0;
+	}
+
+	.project-image {
+		align-self: stretch;
+		justify-self: center;
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		object-position: center;
+	}
+
+	.project:last-child:nth-child(odd) {
+		grid-column: 1 / -1;
+		justify-self: center;
+		width: calc(50% - 0.625rem);
+	}
+}
+
+@media (min-width: 1500px) {
+	.expanded-section {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		align-content: center;
+	}
+
+	.project {
+		height: clamp(400px, 58vh, 580px);
+	}
+
+	.project:last-child:nth-child(odd) {
+		grid-column: auto;
+		justify-self: stretch;
+		width: auto;
+	}
+}
