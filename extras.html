@@ -1,26 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" class="photo-gallery-document">
+<html lang="en" class="extras-document">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="./styles.css?v=2">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=BBH+Bogle&family=BBH+Hegarty&display=swap" rel="stylesheet">
         <title>Extras</title>
     </head>
-    <body class="extras">
+    <body class="extras-page">
         <nav class="navbar is-gradient-expanded">
         <a class="link" id="home" href="index.html">home</a>
         <a class="link" id="photos" href="photos.html">photos</a>
         <a class="link" id="blog" href="blog.html">blog</a>
         <a class="link" id="extras" href="extras.html">extras</a>
         </nav>
-        <div class="photo-card">
-            <a href="quote.html">
-                <h1 class="extraname">Quote of the day!</h1>
+
+        <main class="extras-content">
+            <header class="extras-intro">
+                <h1>Extras</h1>
+                <p>Some cool stuff I added because i was bored!   ¯\_(ツ)_/¯</p>
+            </header>
+
+            <a class="extras-feature" href="quote.html">
+                <span class="extras-feature-mark" aria-hidden="true">“</span>
+                <span class="extras-feature-copy">
+                    <span class="extras-feature-eyebrow">DAILY</span>
+                    <span class="extras-feature-title">Quote of the day</span>
+                    <span class="extras-feature-description">A random quote, every day!</span>
+                </span>
+                <span class="extras-feature-arrow" aria-hidden="true">↗</span>
             </a>
-        </div>
-        
+        </main>
     </body>
 </html>
